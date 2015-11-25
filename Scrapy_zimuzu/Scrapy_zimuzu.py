@@ -9,7 +9,7 @@ import re
 
 
 target_input = raw_input("请输入您想要获取的字幕名称：").decode('gb2312')
-print [target_input]
+
 isTrue = True
 url = "http://www.zimuzu.tv/esubtitle"
 while(isTrue):
@@ -20,13 +20,13 @@ while(isTrue):
                 pattern = re.compile('<div .*?subtitle-list">.*?<dt.*?<strong.*?<a.*?>(.*?)</a></strong>',re.S)
                 items = re.findall(pattern,htmlcode)
                 for item in items:
-                        print item
                         pattern = re.compile(target_input,re.S)
                         i = re.findall(pattern,item)
+                        print "还没有更新，请稍等…………"
                         for it in i:
                                 print "已经更新了"
                                 isTrue = False
-                                
+
 
         except urllib2.URLError,e:
             if hasattr(e,"code"):
@@ -36,4 +36,4 @@ while(isTrue):
 
 
 
-        
+
