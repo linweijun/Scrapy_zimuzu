@@ -1,18 +1,19 @@
-# # -*- coding=UTF-8 -*-
+# -*- coding: gbk -*-
 '''
-æŠ“å–ä¸€ä¸ªç½‘é¡µï¼Œæ¯ä¸¤ç§’åˆ·æ–°ä¸€æ¬¡ï¼Œä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼åŒ¹é…ç¬¬ä¸€ä¸ªå­—å¹•çš„å˜åŒ–ã€‚å¦‚æœæœ‰å˜åŒ–åˆ™å‘å‡ºå¹¶ä¸”æ˜¯è‡ªå·±è¦çš„åˆ™å‘å‡ºè­¦æŠ¥ã€‚
+×¥È¡Ò»¸öÍøÒ³£¬Ã¿Á½ÃëË¢ĞÂÒ»´Î£¬Ê¹ÓÃÕıÔò±í´ïÊ½Æ¥ÅäµÚÒ»¸ö×ÖÄ»µÄ±ä»¯¡£Èç¹ûÓĞ±ä»¯Ôò·¢³ö²¢ÇÒÊÇ×Ô¼ºÒªµÄÔò·¢³ö¾¯±¨¡£
 '''
 
 import urllib2
 import urllib
 import re
+import sys
 
-
-target_input = raw_input("è¯·è¾“å…¥æ‚¨æƒ³è¦è·å–çš„å­—å¹•åç§°ï¼š").decode('UTF-8')
-print [target_input]
-
-isTrue = True
+#Ò»Ğ©»ù±¾ĞÅÏ¢
 url = "http://www.zimuzu.tv/esubtitle"
+isTrue = True
+
+target_input = raw_input("ÇëÊäÈëÄúÏëÒª»ñÈ¡Ó°ÊÓµÄ×ÖÄ»Ãû³Æ£º").decode('gbk')
+
 while(isTrue):
         try:
                 request   = urllib2.Request(url)
@@ -23,12 +24,14 @@ while(isTrue):
                 for item in items:
                         pattern = re.compile(target_input,re.S)
                         i = re.findall(pattern,item)
-                        print "è¿˜æ²¡æœ‰æ›´æ–°ï¼Œè¯·ç¨ç­‰â€¦â€¦â€¦â€¦"
-                        for it in i:
-                                print "å·²ç»æ›´æ–°äº†"
-                                isTrue = False
-
-
+                        if len(i):
+                                for it in i:
+                                        print i
+                                        print "ÒÑ¾­¸üĞÂÇëÇ°ÍùÍøÕ¾ÏÂÔØ¡­¡­¡­¡­"
+                                        isTrue = False
+                                        break
+                        else:
+                                print "Î´¸üĞÂ£¬ÇëÉÔµÈ¡­¡­¡­¡­"
         except urllib2.URLError,e:
             if hasattr(e,"code"):
                 print e.code
@@ -37,4 +40,4 @@ while(isTrue):
 
 
 
-
+        

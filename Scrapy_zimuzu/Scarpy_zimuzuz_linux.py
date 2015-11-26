@@ -1,18 +1,16 @@
-# # -*- coding=UTF-8 -*-
-'''
-抓取一个网页，每两秒刷新一次，使用正则表达式匹配第一个字幕的变化。如果有变化则发出并且是自己要的则发出警报。
-'''
+# -*- coding: utf-8 -*-
 
 import urllib2
 import urllib
 import re
+import sys
 
 
-target_input = raw_input("请输入您想要获取的字幕名称：").decode('UTF-8')
-print [target_input]
-
-isTrue = True
 url = "http://www.zimuzu.tv/esubtitle"
+isTrue = True
+
+target_input = raw_input("请输入你要获取的影视字幕信息：").decode('utf-8')
+
 while(isTrue):
         try:
                 request   = urllib2.Request(url)
@@ -23,12 +21,14 @@ while(isTrue):
                 for item in items:
                         pattern = re.compile(target_input,re.S)
                         i = re.findall(pattern,item)
-                        print "还没有更新，请稍等…………"
-                        for it in i:
-                                print "已经更新了"
-                                isTrue = False
-
-
+                        if len(i):
+                                for it in i:
+                                        print i
+                                        print "已经更新请下载前往网站…………"
+                                        isTrue = False
+                                        break
+                        else:
+                                print "还未更新，请稍后…………"
         except urllib2.URLError,e:
             if hasattr(e,"code"):
                 print e.code
@@ -37,4 +37,4 @@ while(isTrue):
 
 
 
-
+        
