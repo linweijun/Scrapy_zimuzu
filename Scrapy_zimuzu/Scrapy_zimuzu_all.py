@@ -27,7 +27,7 @@ def getEsubtitleStatus(url):
     isTrue = False
     encodeTarget = target.encode('utf-8')
     ReleaseTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-    while(not isTrue):
+    while not isTrue:
         try:
             request = urllib2.Request(url)
             response = urllib2.urlopen(request)
